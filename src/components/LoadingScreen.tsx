@@ -85,7 +85,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-lg md:text-xl text-muted-foreground mb-8"
         >
-          I'm Abdessamad Karimi
+          I&apos;m Abdessamad Karimi
         </motion.p>
 
         {/* Loading Dots */}

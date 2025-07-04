@@ -107,7 +107,7 @@ const Contact = () => {
           <div className="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind or just want to chat about technology? 
-            I'd love to hear from you!
+            I&apos;d love to hear from you!
           </p>
         </motion.div>
 
@@ -287,7 +287,7 @@ const Contact = () => {
                 <CardContent className="p-6">
                   <div className="text-4xl mb-4">☕</div>
                   <p className="text-muted-foreground italic">
-                    "Let's grab a virtual coffee and discuss your next big idea!"
+                    "                    &ldquo;Let&apos;s grab a virtual coffee and discuss your next big idea!&rdquo;"
                   </p>
                 </CardContent>
               </Card>

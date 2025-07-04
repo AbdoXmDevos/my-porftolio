@@ -32,7 +32,7 @@ const About = () => {
             <Card className="p-8 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-amber-200 dark:border-amber-800">
               <CardContent className="p-0">
                 <p className="text-lg leading-relaxed mb-6">
-                  Hello! I'm Abdessamad, a passionate software developer with a love for creating 
+                  Hello! I&apos;m Abdessamad, a passionate software developer with a love for creating
                   elegant solutions to complex problems. My journey in technology is fueled by 
                   curiosity and powered by coffee.
                 </p>
@@ -42,7 +42,7 @@ const About = () => {
                   functional, but also clean, maintainable, and scalable.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  When I'm not coding, you'll find me exploring new technologies, contributing to 
+                  When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to
                   open-source projects, or enjoying a perfectly brewed cup of coffee while 
                   brainstorming the next big idea.
                 </p>

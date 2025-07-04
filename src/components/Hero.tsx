@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Instagram, Twitter, Github, Linkedin, Mouse, Languages } from "lucide-react"
+import Image from "next/image"
 
 const Hero = () => {
   return (
@@ -83,17 +84,12 @@ const Hero = () => {
                 <div className="relative w-64 h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-2xl overflow-hidden orange-border bg-gradient-to-br from-card to-muted shadow-2xl z-10">
 
                   {/* Your Profile Image - Replace with your actual image */}
-                  <img
+                  <Image
                     src="/profile-image.jpeg"
                     alt="Abdessamad Karimi"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      // Fallback if image doesn't load
-                      const target = e.currentTarget as HTMLImageElement;
-                      target.style.display = 'none';
-                      const fallback = target.nextElementSibling as HTMLElement;
-                      if (fallback) fallback.style.display = 'flex';
-                    }}
+                    fill
+                    className="object-cover"
+                    priority
                   />
                   {/* Fallback content */}
                   <div className="absolute inset-0 flex items-center justify-center text-6xl lg:text-8xl bg-gradient-to-br from-card to-muted" style={{ display: 'none' }}>
@@ -276,7 +272,7 @@ const Hero = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               >
-                I'm <span className="text-gradient">Abdessamad Karimi</span>
+                I&apos;m <span className="text-gradient">Abdessamad Karimi</span>
               </motion.h1>
 
               <motion.p
