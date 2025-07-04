@@ -19,7 +19,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const aboutSection = document.querySelector('#about')
+      const aboutSection = document.querySelector('#about') as HTMLElement
       if (aboutSection) {
         const aboutTop = aboutSection.offsetTop
         const scrollPosition = window.scrollY + window.innerHeight * 0.3 // Show when 30% into the about section
