@@ -5,10 +5,15 @@ import { ThemeProvider as NextThemesProvider } from "next-themes"
 
 interface ThemeProviderProps {
   children: React.ReactNode
-  attribute?: string
+  attribute?: any
   defaultTheme?: string
   enableSystem?: boolean
   disableTransitionOnChange?: boolean
+  themes?: string[]
+  value?: any
+  forcedTheme?: string
+  storageKey?: string
+  nonce?: string
 }
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {

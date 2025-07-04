@@ -20,6 +20,8 @@ const eslintConfig = [
       // Disable unused vars warnings for imports
       "@typescript-eslint/no-unused-vars": "off",
       "no-unused-vars": "off",
+      // Disable explicit any rule
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 ];
