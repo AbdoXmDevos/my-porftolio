@@ -3,77 +3,78 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, Smartphone, Globe, Bot, Zap } from "lucide-react"
+import { ExternalLink, Github, Smartphone, Globe, Bot, Zap, Eye, AppWindow, Ticket, X, ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
+import { useState } from "react"
 
 const Projects = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<any>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
   const projects = [
     {
-      title: "AI Chatbot Android App",
+      title: "Cleverbot Ai",
       description: "An intelligent Android application powered by OpenAI API that provides conversational AI capabilities with a beautiful, intuitive interface.",
       image: "🤖",
-      technologies: ["Kotlin", "Android", "OpenAI API", "Retrofit", "Material Design"],
+      technologies: ["Kotlin", "Android", "OpenAI API", "Firebase", "Material Design"],
       githubUrl: "#",
-      liveUrl: "#",
       category: "Mobile",
       icon: <Smartphone className="h-5 w-5" />,
-      color: "from-blue-500 to-blue-600"
+      color: "from-blue-500 to-blue-600",
+      imagesLink: []
     },
     {
-      title: "IntelliJ Plugin Generator",
-      description: "A powerful tool that automates the creation of IntelliJ IDEA plugins, complete with templates, configurations, and best practices.",
-      image: "🔧",
-      technologies: ["Java", "IntelliJ Platform SDK", "Gradle", "Swing"],
-      githubUrl: "#",
-      liveUrl: "#",
-      category: "Development Tool",
-      icon: <Zap className="h-5 w-5" />,
-      color: "from-purple-500 to-purple-600"
+      title: "ConnectAI",
+      description: "A platform that connects you with AI tool creators, where you can share insights, react to innovations, learn about emerging technologies, and grow your network.",
+      image: "👨‍💻",
+      technologies: ["NextJS", "TypeScript", "Tailwind CSS", "Supabase", "Shadcn UI"],
+      githubUrl: "https://github.com/AbdoXmDevos/ai-social-app-front",
+      category: "Website",
+      icon: <AppWindow className="h-5 w-5" />,
+      color: "from-orange-500 to-orange-600",
+      imagesLink: []
     },
     {
-      title: "Event Manager Web App",
-      description: "A comprehensive event management platform with real-time updates, user authentication, and responsive design for seamless event organization.",
-      image: "📅",
-      technologies: ["Next.js", "React", "Node.js", "MongoDB", "Socket.io"],
-      githubUrl: "#",
-      liveUrl: "#",
-      category: "Web Application",
-      icon: <Globe className="h-5 w-5" />,
-      color: "from-green-500 to-green-600"
-    },
-    {
-      title: "YouTube Spam Detection",
-      description: "An NLP-powered machine learning model that automatically detects and filters spam comments on YouTube videos with high accuracy.",
-      image: "🛡️",
-      technologies: ["Python", "TensorFlow", "NLP", "Scikit-learn", "YouTube API"],
-      githubUrl: "#",
-      liveUrl: "#",
-      category: "Machine Learning",
-      icon: <Bot className="h-5 w-5" />,
-      color: "from-red-500 to-red-600"
-    },
-    {
-      title: "Coffee Shop Locator",
-      description: "A React Native app that helps coffee enthusiasts find the best coffee shops nearby with reviews, ratings, and navigation features.",
-      image: "☕",
-      technologies: ["React Native", "Expo", "Google Maps API", "Firebase"],
-      githubUrl: "#",
-      liveUrl: "#",
-      category: "Mobile",
-      icon: <Smartphone className="h-5 w-5" />,
-      color: "from-amber-500 to-amber-600"
-    },
-    {
-      title: "Portfolio Dashboard",
-      description: "A modern, responsive portfolio website built with Next.js and ShadCN UI, featuring smooth animations and dark mode support.",
-      image: "🎨",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "ShadCN UI", "Framer Motion"],
-      githubUrl: "#",
-      liveUrl: "#",
-      category: "Web Application",
-      icon: <Globe className="h-5 w-5" />,
-      color: "from-indigo-500 to-indigo-600"
+      title: "Evently",
+      description: "A simple platform to create, join, and manage events, built to streamline organization and connect participants with ease.",
+      image: "🎫",
+      technologies: ["NextJS", "TypeScript","Java", "Spring Boot", "Cloudinary", "Redis"],
+      githubUrl: "https://github.com/AbdoXmDevos/event-manager-front",
+      category: "Website",
+      icon: <Ticket className="h-5 w-5" />,
+      color: "from-green-500 to-green-600",
+      imagesLink: []
     }
   ]
+
+  const openModal = (project: any) => {
+    setSelectedProject(project)
+    setCurrentImageIndex(0)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedProject(null)
+    setCurrentImageIndex(0)
+  }
+
+  const nextImage = () => {
+    if (selectedProject && selectedProject.imagesLink.length > 0) {
+      setCurrentImageIndex((prev) =>
+        prev === selectedProject.imagesLink.length - 1 ? 0 : prev + 1
+      )
+    }
+  }
+
+  const prevImage = () => {
+    if (selectedProject && selectedProject.imagesLink.length > 0) {
+      setCurrentImageIndex((prev) =>
+        prev === 0 ? selectedProject.imagesLink.length - 1 : prev - 1
+      )
+    }
+  }
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-slate-50 to-gray-100 dark:from-slate-950/50 dark:to-gray-950/50">
@@ -157,10 +158,10 @@ const Projects = () => {
                       <Button
                         size="sm"
                         className="flex-1 bg-amber-600 hover:bg-amber-700"
-                        onClick={() => window.open(project.liveUrl, '_blank')}
+                        onClick={() => openModal(project)}
                       >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Demo
+                        <Eye className="h-4 w-4 mr-2" />
+                        Preview
                       </Button>
                     </div>
                   </div>
@@ -192,6 +193,78 @@ const Projects = () => {
             </CardContent>
           </Card>
         </motion.div>
+
+        {/* Custom Image Preview Modal */}
+        {isModalOpen && selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
+            <div className="relative bg-white dark:bg-gray-900 rounded-lg max-w-4xl max-h-[90vh] w-full overflow-hidden">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  {selectedProject.title} - Project Images
+                </h3>
+                <button
+                  onClick={closeModal}
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+                >
+                  <X className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+                </button>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6">
+                {selectedProject.imagesLink && selectedProject.imagesLink.length > 0 ? (
+                  <div className="relative">
+                    {/* Image Display */}
+                    <div className="flex justify-center items-center mb-4">
+                      <Image
+                        src={selectedProject.imagesLink[currentImageIndex]}
+                        alt={`${selectedProject.title} screenshot ${currentImageIndex + 1}`}
+                        width={800}
+                        height={600}
+                        className="rounded-lg object-contain max-h-[60vh] w-auto"
+                      />
+                    </div>
+
+                    {/* Navigation Arrows */}
+                    {selectedProject.imagesLink.length > 1 && (
+                      <>
+                        <button
+                          onClick={prevImage}
+                          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full p-3 shadow-lg transition-colors"
+                        >
+                          <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                        </button>
+                        <button
+                          onClick={nextImage}
+                          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full p-3 shadow-lg transition-colors"
+                        >
+                          <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                        </button>
+                      </>
+                    )}
+
+                    {/* Image Counter */}
+                    {selectedProject.imagesLink.length > 1 && (
+                      <div className="text-center mt-4">
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                          {currentImageIndex + 1} of {selectedProject.imagesLink.length}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center py-12 text-center">
+                    <div className="text-6xl mb-4">{selectedProject.image}</div>
+                    <p className="text-gray-500 dark:text-gray-400">
+                      No images available for this project yet.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

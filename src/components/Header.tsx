@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { Menu, X, Coffee } from "lucide-react"
+import { Menu, X, BriefcaseBusiness } from "lucide-react"
+import { useSmoothScroll } from "@/hooks/useSmoothScroll"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const { scrollToElement, scrollToTop } = useSmoothScroll()
 
   const navItems = [
     { name: "About Me", href: "#about" },
@@ -34,22 +36,21 @@ const Header = () => {
   }, [])
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    scrollToElement(href, { duration: 1000, offset: 80 })
     setIsMenuOpen(false)
   }
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b transition-transform duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-white dark:bg-black shadow-md transition-transform duration-300 ${
       isVisible ? 'translate-y-0' : '-translate-y-full'
     }`}>
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Coffee className="h-8 w-8 text-amber-600" />
-          <span className="text-xl font-bold">AK</span>
+          <BriefcaseBusiness
+            className="cursor-pointer h-8 w-8 text-amber-600"
+            onClick={() => scrollToTop({ duration: 800 })}
+          />
         </div>
 
         {/* Desktop Navigation */}
@@ -66,7 +67,7 @@ const Header = () => {
         </nav>
 
         {/* Theme Toggle */}
-        <div className="hidden md:block">
+        <div className="hidden md:block glass-card">
           <ThemeToggle />
         </div>
 

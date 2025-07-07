@@ -3,23 +3,47 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Instagram, Twitter, Github, Linkedin, Mouse, Languages } from "lucide-react"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { Instagram, Twitter, Github, Linkedin, Mouse, Languages, Download } from "lucide-react"
 import Image from "next/image"
 
 const Hero = () => {
   return (
     <TooltipProvider delayDuration={100}>
       <section className="min-h-screen relative overflow-hidden bg-background">
-      {/* Floating 3D Cubes */}
-      <div className="floating-cube top-20 right-20 opacity-80"></div>
-      <div className="floating-cube bottom-32 left-16 opacity-60" style={{ animationDelay: '2s' }}></div>
-      <div className="floating-cube top-1/2 right-1/4 opacity-40" style={{ animationDelay: '4s' }}></div>
+      {/* Starry Night Sky Effect */}
+      <div className="stars-container">
+        {/* Large Stars */}
+        <div className="star star-large top-20 right-20" style={{ animationDelay: '0s' }}></div>
+        <div className="star star-large bottom-32 left-16" style={{ animationDelay: '2s' }}></div>
+        <div className="star star-large top-1/2 right-1/4" style={{ animationDelay: '4s' }}></div>
+        <div className="star star-large top-1/3 left-1/3" style={{ animationDelay: '1s' }}></div>
+        <div className="star star-large bottom-1/4 right-1/3" style={{ animationDelay: '3s' }}></div>
+
+        {/* Medium Stars */}
+        <div className="star star-medium top-16 left-1/4" style={{ animationDelay: '0.5s' }}></div>
+        <div className="star star-medium bottom-20 right-1/2" style={{ animationDelay: '2.5s' }}></div>
+        <div className="star star-medium top-3/4 left-20" style={{ animationDelay: '1.5s' }}></div>
+        <div className="star star-medium top-40 right-16" style={{ animationDelay: '3.5s' }}></div>
+        <div className="star star-medium bottom-1/3 left-1/2" style={{ animationDelay: '4.5s' }}></div>
+        <div className="star star-medium top-1/4 right-1/5" style={{ animationDelay: '0.8s' }}></div>
+
+        {/* Small Stars */}
+        <div className="star star-small top-24 left-1/5" style={{ animationDelay: '1.2s' }}></div>
+        <div className="star star-small bottom-40 right-1/4" style={{ animationDelay: '2.8s' }}></div>
+        <div className="star star-small top-1/2 left-1/6" style={{ animationDelay: '0.3s' }}></div>
+        <div className="star star-small bottom-1/5 left-1/3" style={{ animationDelay: '3.2s' }}></div>
+        <div className="star star-small top-2/3 right-1/6" style={{ animationDelay: '1.8s' }}></div>
+        <div className="star star-small top-12 right-1/3" style={{ animationDelay: '4.2s' }}></div>
+        <div className="star star-small bottom-16 left-1/4" style={{ animationDelay: '0.7s' }}></div>
+        <div className="star star-small top-3/5 right-1/2" style={{ animationDelay: '2.3s' }}></div>
+      </div>
 
       {/* Main Content Container with Orange Border */}
       <div className="absolute inset-2 md:inset-4 lg:inset-6 xl:inset-8 orange-border bg-card/50 backdrop-blur-md shadow-2xl">
         <div className="h-full flex">
           {/* Left Sidebar */}
-          <div className="w-16 lg:w-20 flex flex-col items-center justify-between py-6 lg:py-8 border-r border-border">
+          <div className="w-16 lg:w-20 flex flex-col items-center justify-between py-6 lg:py-8 border-r" style={{ borderColor: 'hsl(var(--orange))' }}>
             {/* Social Media Icons */}
             <div className="flex flex-col space-y-3 lg:space-y-4">
               <motion.a
@@ -281,16 +305,48 @@ const Hero = () => {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="text-base md:text-lg text-muted-foreground mb-8"
               >
-                A full stack developer based in Morocco.
+                A freshly graduated full stack developer based in Morocco.
               </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
+                className="flex flex-col sm:flex-row gap-4"
               >
-                <Button className="orange-gradient hover:opacity-90 px-6 md:px-8 py-2 md:py-3 text-white font-medium">
-                  Learn more
+                <Button
+                className="cursor-pointer orange-gradient hover:opacity-90 px-6 md:px-8 py-2 md:py-3 text-white font-medium"
+                onClick={() => {
+                  const aboutSection = document.querySelector('#about')
+                  if (aboutSection) {
+                    aboutSection.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}>
+                  Who am I?
+                </Button>
+
+                <Button
+                variant="outline"
+                className="cursor-pointer bg-transparent border-2 text-white font-medium transition-all duration-300 flex items-center gap-2 px-6 md:px-8 py-2 md:py-3"
+                style={{
+                  borderColor: 'hsl(var(--orange))',
+                  color: 'hsl(var(--orange))',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#F46223'
+                  e.currentTarget.style.color = 'white'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                  e.currentTarget.style.color = 'hsl(var(--orange))'
+                }}
+                onClick={() => {
+                  // Add your resume download logic here
+                  // For example: window.open('/resume.pdf', '_blank')
+                  console.log('Download resume clicked')
+                }}>
+                  <Download className="h-4 w-4" />
+                  Download Resume
                 </Button>
               </motion.div>
             </motion.div>
@@ -298,13 +354,24 @@ const Hero = () => {
 
           </div>
 
-          {/* Top Right Language Icon */}
-          <div className="absolute top-4 right-4 md:top-6 md:right-6 lg:top-8 lg:right-8">
+          {/* Top Right Controls */}
+          <div className="absolute top-4 right-4 md:top-6 md:right-6 lg:top-8 lg:right-8 flex items-center space-x-2">
+            {/* Language Icon */}
+            <Tooltip>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  className="p-2 md:p-2.5 lg:p-3 glass-card hover:bg-primary/10 transition-colors cursor-pointer"
+                >
+                  <Languages className="h-4 w-4 md:h-4 md:w-4 lg:h-5 lg:w-5 text-muted-foreground hover:text-primary" />
+                </motion.div>
+            </Tooltip>
+
+            {/* Theme Toggle */}
             <motion.div
               whileHover={{ scale: 1.1 }}
               className="p-2 md:p-2.5 lg:p-3 glass-card hover:bg-primary/10 transition-colors cursor-pointer"
             >
-              <Languages className="h-4 w-4 md:h-4 md:w-4 lg:h-5 lg:w-5 text-muted-foreground hover:text-primary" />
+              <ThemeToggle variant="icon-only" />
             </motion.div>
           </div>
 

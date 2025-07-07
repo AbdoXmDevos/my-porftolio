@@ -1,75 +1,69 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image"
 
 const Technologies = () => {
-  const techCategories = [
-    {
-      title: "Languages",
-      icon: "💻",
-      technologies: [
-        { name: "JavaScript", icon: "🟨", level: 90 },
-        { name: "TypeScript", icon: "🔷", level: 85 },
-        { name: "Kotlin", icon: "🟣", level: 80 },
-        { name: "Java", icon: "☕", level: 85 },
-        { name: "Python", icon: "🐍", level: 75 },
-      ]
-    },
+  const techZones = [
     {
       title: "Frontend",
-      icon: "🎨",
       technologies: [
-        { name: "Next.js", icon: "⚫", level: 90 },
-        { name: "React", icon: "⚛️", level: 90 },
-        { name: "Tailwind CSS", icon: "🎨", level: 85 },
-        { name: "ShadCN UI", icon: "🎭", level: 80 },
-        { name: "Material UI", icon: "🎯", level: 75 },
+        { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",dark:false },
+        { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",dark:true },
+        { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",dark:false },
+        { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",dark:false },
+        { name: "Tailwind CSS", icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/tailwindcss/tailwindcss-original.svg",dark:false },
+        { name: "Vercel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",dark:true },  
+        { name: "Angular", icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/angular/angular-original.svg",dark:false }
       ]
     },
     {
       title: "Backend",
-      icon: "⚙️",
       technologies: [
-        { name: "Spring Boot", icon: "🍃", level: 85 },
-        { name: "Express.js", icon: "🚀", level: 80 },
-        { name: "Node.js", icon: "🟢", level: 80 },
+        { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",dark:false },
+        { name: "Spring Boot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",dark:false },
+        { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",dark:false },
+        { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",dark:false },
+        { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",dark:false },
+        { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",dark:false },
+        { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",dark:false }
       ]
     },
     {
       title: "Mobile",
-      icon: "📱",
       technologies: [
-        { name: "Android (Kotlin)", icon: "🤖", level: 85 },
-        { name: "React Native", icon: "📱", level: 75 },
-        { name: "Expo", icon: "⚡", level: 70 },
+        { name: "React Native", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",dark:false },
+        { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",dark:false },
+        { name: "Swift", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",dark:false },
+        { name: "Jetpack Compose", icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/jetpackcompose/jetpackcompose-original.svg",dark:false },
+        { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",dark:false }
       ]
     },
     {
-      title: "Testing & DevOps",
-      icon: "🔧",
+      title: "AI & ML",
       technologies: [
-        { name: "JUnit", icon: "✅", level: 80 },
-        { name: "Mockito", icon: "🎭", level: 75 },
-        { name: "Katalon", icon: "🧪", level: 70 },
-        { name: "Docker", icon: "🐳", level: 75 },
-        { name: "GitHub Actions", icon: "🔄", level: 70 },
-        { name: "Git", icon: "📝", level: 90 },
+        { name: "TensorFlow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",dark:false },
+        { name: "PyTorch", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",dark:false },
+        { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",dark:true },
+        { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",dark:false },
+        { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg",dark:false }
       ]
     },
     {
-      title: "AI & LLMs",
-      icon: "🤖",
+      title: "Tools & Others",
       technologies: [
-        { name: "Gemini", icon: "💎", level: 75 },
-        { name: "ChatGPT", icon: "🧠", level: 80 },
-        { name: "OpenAI API", icon: "🔮", level: 75 },
+        { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",dark:false },  
+        { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",dark:true },
+        { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",dark:false },
+        { name: "Azure", icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/azure/azure-original.svg",dark:false },
+        { name: "Redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",dark:false },
+        { name: "Jenkins", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",dark:false }
       ]
     }
   ]
 
   return (
-    <section id="technologies" className="py-20 bg-gradient-to-br from-slate-50 to-gray-100 dark:from-slate-950/50 dark:to-gray-950/50">
+    <section id="technologies" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -87,54 +81,73 @@ const Technologies = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {techCategories.map((category, categoryIndex) => (
+        {/* Tech Stack Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+          {techZones.map((zone, zoneIndex) => (
             <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+              key={zone.title}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: zoneIndex * 0.1 }}
               viewport={{ once: true }}
+              className="relative group"
             >
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="text-center pb-4">
-                  <div className="text-4xl mb-2">{category.icon}</div>
-                  <CardTitle className="text-xl">{category.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {category.technologies.map((tech, techIndex) => (
-                      <motion.div
-                        key={tech.name}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.4, delay: (categoryIndex * 0.1) + (techIndex * 0.05) }}
-                        viewport={{ once: true }}
-                        className="flex items-center justify-between"
-                      >
-                        <div className="flex items-center space-x-3">
-                          <span className="text-lg">{tech.icon}</span>
-                          <span className="font-medium">{tech.name}</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${tech.level}%` }}
-                              transition={{ duration: 1, delay: (categoryIndex * 0.1) + (techIndex * 0.05) + 0.2 }}
-                              viewport={{ once: true }}
-                              className="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"
+              {/* Clean background with subtle border */}
+              <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl p-10 h-[22rem] border border-gray-200/50 dark:border-gray-700/50 hover:border-amber-300/50 dark:hover:border-amber-600/50 transition-all duration-300 hover:shadow-lg">
+                <h3 className="text-xl font-bold mb-12 text-center text-gray-800 dark:text-gray-200">
+                  {zone.title}
+                </h3>
+
+                {/* Technology Icons Grid */}
+                <div className="grid grid-cols-4 gap-8 justify-items-center pb-12">
+                  {zone.technologies.map((tech, techIndex) => (
+                    <motion.div
+                      key={tech.name}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: (zoneIndex * 0.1) + (techIndex * 0.05)
+                      }}
+                      whileHover={{
+                        scale: 1.2,
+                        rotate: [0, -5, 5, 0],
+                        transition: { duration: 0.3 }
+                      }}
+                      viewport={{ once: true }}
+                      className="group/tech relative mb-6"
+                    >
+                      {/* Icon container */}
+                      <div className="w-12 h-12 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 flex items-center justify-center cursor-pointer hover:shadow-md transition-all duration-200 group-hover/tech:border-amber-300 dark:group-hover/tech:border-amber-600">
+                        {tech.dark ? (
+                          <div className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Image
+                              src={tech.icon}
+                              alt={tech.name}
+                              width={28}
+                              height={28}
+                              className="object-contain"
                             />
                           </div>
-                          <span className="text-xs text-muted-foreground w-8">
-                            {tech.level}%
-                          </span>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                        ) : (
+                          <Image
+                            src={tech.icon}
+                            alt={tech.name}
+                            width={28}
+                            height={28}
+                            className="object-contain"
+                          />
+                        )}
+                      </div>
+
+                      {/* Tooltip */}
+                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs px-2 py-1 rounded opacity-0 group-hover/tech:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                        {tech.name}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
