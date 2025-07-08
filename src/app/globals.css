@@ -25,8 +25,8 @@
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --radius: 0.625rem;
-  --orange: 18 100% 62%;
-  --orange-dark: 18 100% 45%;
+  --orange: 45 93% 47%;
+  --orange-dark: 45 93% 35%;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -165,7 +165,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--orange));
+  background: hsl(37, 100%, 50%);
   border-radius: 4px;
 }
 
@@ -179,16 +179,16 @@ body {
 }
 
 .orange-border {
-  border: 3px solid hsl(var(--orange));
+  border: 3px solid hsl(34, 100%, 50%);
   border-radius: calc(var(--radius) * 2);
   box-shadow:
-    0 0 0 1px hsl(var(--orange) / 0.2),
-    0 0 20px hsl(var(--orange) / 0.3),
-    inset 0 0 20px hsl(var(--orange) / 0.1);
+    0 0 0 1px hsl(42.12,100.00%,50.00% / 0.2),
+    0 0 20px hsl(42.12,100.00%,50.00% / 0.3),
+    inset 0 0 20px hsl(42.12,100.00%,50.00% / 0.1);
 }
 
 .orange-glow {
-  box-shadow: 0 0 20px hsla(var(--orange), 0.3);
+  box-shadow: 0 0 20px hsla(34, 100%, 50%, 0.3);
 }
 
 /* Starry Night Sky Effect */

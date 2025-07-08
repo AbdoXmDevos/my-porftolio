@@ -3,78 +3,44 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, Smartphone, Globe, Bot, Zap, Eye, AppWindow, Ticket, X, ChevronLeft, ChevronRight } from "lucide-react"
-import Image from "next/image"
-import { useState } from "react"
+import { ExternalLink, Github, Smartphone, Globe, Bot, Zap, AppWindow, Ticket } from "lucide-react"
+import { useTranslation } from "@/contexts/LanguageContext"
 
 const Projects = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedProject, setSelectedProject] = useState<any>(null)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const { t } = useTranslation()
 
   const projects = [
     {
-      title: "Cleverbot Ai",
-      description: "An intelligent Android application powered by OpenAI API that provides conversational AI capabilities with a beautiful, intuitive interface.",
+      title: t.projects.items.cleverbotAi.title,
+      description: t.projects.items.cleverbotAi.description,
       image: "🤖",
       technologies: ["Kotlin", "Android", "OpenAI API", "Firebase", "Material Design"],
-      githubUrl: "#",
-      category: "Mobile",
+      githubUrl: "https://github.com/AbdoXmDevos/Cleverbot-Android-App",
+      category: t.projects.items.cleverbotAi.category,
       icon: <Smartphone className="h-5 w-5" />,
-      color: "from-blue-500 to-blue-600",
-      imagesLink: []
+      color: "from-amber-500 to-amber-600",
     },
     {
-      title: "ConnectAI",
-      description: "A platform that connects you with AI tool creators, where you can share insights, react to innovations, learn about emerging technologies, and grow your network.",
+      title: t.projects.items.connectAi.title,
+      description: t.projects.items.connectAi.description,
       image: "👨‍💻",
       technologies: ["NextJS", "TypeScript", "Tailwind CSS", "Supabase", "Shadcn UI"],
       githubUrl: "https://github.com/AbdoXmDevos/ai-social-app-front",
-      category: "Website",
+      category: t.projects.items.connectAi.category,
       icon: <AppWindow className="h-5 w-5" />,
-      color: "from-orange-500 to-orange-600",
-      imagesLink: []
+      color: "from-amber-500 to-amber-600",
     },
     {
-      title: "Evently",
-      description: "A simple platform to create, join, and manage events, built to streamline organization and connect participants with ease.",
+      title: t.projects.items.evently.title,
+      description: t.projects.items.evently.description,
       image: "🎫",
       technologies: ["NextJS", "TypeScript","Java", "Spring Boot", "Cloudinary", "Redis"],
       githubUrl: "https://github.com/AbdoXmDevos/event-manager-front",
-      category: "Website",
+      category: t.projects.items.evently.category,
       icon: <Ticket className="h-5 w-5" />,
-      color: "from-green-500 to-green-600",
-      imagesLink: []
+      color: "from-amber-500 to-amber-600",
     }
   ]
-
-  const openModal = (project: any) => {
-    setSelectedProject(project)
-    setCurrentImageIndex(0)
-    setIsModalOpen(true)
-  }
-
-  const closeModal = () => {
-    setIsModalOpen(false)
-    setSelectedProject(null)
-    setCurrentImageIndex(0)
-  }
-
-  const nextImage = () => {
-    if (selectedProject && selectedProject.imagesLink.length > 0) {
-      setCurrentImageIndex((prev) =>
-        prev === selectedProject.imagesLink.length - 1 ? 0 : prev + 1
-      )
-    }
-  }
-
-  const prevImage = () => {
-    if (selectedProject && selectedProject.imagesLink.length > 0) {
-      setCurrentImageIndex((prev) =>
-        prev === 0 ? selectedProject.imagesLink.length - 1 : prev - 1
-      )
-    }
-  }
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-slate-50 to-gray-100 dark:from-slate-950/50 dark:to-gray-950/50">
@@ -87,11 +53,11 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Featured <span className="text-amber-600">Projects</span>
+            {t.projects.title}
           </h2>
-          <div className="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
+          <div className="w-24 h-1 bg-orange-500 mx-auto mb-8"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A showcase of my recent work and contributions to the tech community
+            {t.projects.subtitle}
           </p>
         </motion.div>
 
@@ -144,24 +110,16 @@ const Projects = () => {
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex space-x-3 pt-4">
+                    {/* Action Button */}
+                    <div className="pt-4">
                       <Button
                         variant="outline"
                         size="sm"
-                        className="flex-1 group-hover:border-amber-600 group-hover:text-amber-600 transition-colors"
+                        className="w-full group-hover:border-orange-400 group-hover:text-orange-400 hover:text-orange-300 transition-colors"
                         onClick={() => window.open(project.githubUrl, '_blank')}
                       >
                         <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </Button>
-                      <Button
-                        size="sm"
-                        className="flex-1 bg-amber-600 hover:bg-amber-700"
-                        onClick={() => openModal(project)}
-                      >
-                        <Eye className="h-4 w-4 mr-2" />
-                        Preview
+                        {t.projects.buttons.viewCode}
                       </Button>
                     </div>
                   </div>
@@ -179,92 +137,21 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <Card className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-amber-200 dark:border-amber-800">
+          <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-700/20 dark:to-orange-800/20 border-orange-200 dark:border-orange-600">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">Want to see more?</h3>
+              <h3 className="text-2xl font-bold mb-4">{t.projects.github.title}</h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                These are just a few highlights from my portfolio. Check out my GitHub for more projects, 
-                contributions, and open-source work.
+                {t.projects.github.description}
               </p>
-              <Button className="bg-amber-600 hover:bg-amber-700">
+              <Button className="bg-orange-500 hover:bg-orange-600" onClick={() => window.open("https://github.com/AbdoXmDevos", '_blank')}>
                 <Github className="h-4 w-4 mr-2" />
-                View All Projects on GitHub
+                {t.projects.github.button}
               </Button>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* Custom Image Preview Modal */}
-        {isModalOpen && selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4">
-            <div className="relative bg-white dark:bg-gray-900 rounded-lg max-w-4xl max-h-[90vh] w-full overflow-hidden">
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {selectedProject.title} - Project Images
-                </h3>
-                <button
-                  onClick={closeModal}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
-                >
-                  <X className="h-6 w-6 text-gray-500 dark:text-gray-400" />
-                </button>
-              </div>
 
-              {/* Modal Content */}
-              <div className="p-6">
-                {selectedProject.imagesLink && selectedProject.imagesLink.length > 0 ? (
-                  <div className="relative">
-                    {/* Image Display */}
-                    <div className="flex justify-center items-center mb-4">
-                      <Image
-                        src={selectedProject.imagesLink[currentImageIndex]}
-                        alt={`${selectedProject.title} screenshot ${currentImageIndex + 1}`}
-                        width={800}
-                        height={600}
-                        className="rounded-lg object-contain max-h-[60vh] w-auto"
-                      />
-                    </div>
-
-                    {/* Navigation Arrows */}
-                    {selectedProject.imagesLink.length > 1 && (
-                      <>
-                        <button
-                          onClick={prevImage}
-                          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full p-3 shadow-lg transition-colors"
-                        >
-                          <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
-                        </button>
-                        <button
-                          onClick={nextImage}
-                          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full p-3 shadow-lg transition-colors"
-                        >
-                          <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
-                        </button>
-                      </>
-                    )}
-
-                    {/* Image Counter */}
-                    {selectedProject.imagesLink.length > 1 && (
-                      <div className="text-center mt-4">
-                        <span className="text-sm text-gray-500 dark:text-gray-400">
-                          {currentImageIndex + 1} of {selectedProject.imagesLink.length}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center justify-center py-12 text-center">
-                    <div className="text-6xl mb-4">{selectedProject.image}</div>
-                    <p className="text-gray-500 dark:text-gray-400">
-                      No images available for this project yet.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   )

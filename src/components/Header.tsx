@@ -1,22 +1,26 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { LanguageToggle } from "@/components/ui/language-toggle"
 import { Menu, X, BriefcaseBusiness } from "lucide-react"
 import { useSmoothScroll } from "@/hooks/useSmoothScroll"
+import { useTranslation } from "@/contexts/LanguageContext"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
   const { scrollToElement, scrollToTop } = useSmoothScroll()
+  const { t } = useTranslation()
 
   const navItems = [
-    { name: "About Me", href: "#about" },
-    { name: "Technologies", href: "#technologies" },
-    { name: "Education & Experience", href: "#education" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: t.header.navigation.aboutMe, href: "#about" },
+    { name: t.header.navigation.educationExperience, href: "#education" },
+    { name: t.header.navigation.projects, href: "#projects" },
+    { name: t.header.navigation.contact, href: "#contact" },
   ]
 
   useEffect(() => {
@@ -35,8 +39,34 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Track active section based on scroll position
+  useEffect(() => {
+    const handleActiveSection = () => {
+      const sections = ['about', 'education', 'projects', 'contact']
+      const scrollPosition = window.scrollY + 200 // Offset for header height
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i])
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(`#${sections[i]}`)
+          return
+        }
+      }
+
+      // If we're at the top, no section is active
+      if (window.scrollY < 100) {
+        setActiveSection("")
+      }
+    }
+
+    window.addEventListener('scroll', handleActiveSection)
+    handleActiveSection() // Check initial position
+
+    return () => window.removeEventListener('scroll', handleActiveSection)
+  }, [])
+
   const scrollToSection = (href: string) => {
-    scrollToElement(href, { duration: 1000, offset: 80 })
+    scrollToElement(href, { duration: 10, offset: 80 })
     setIsMenuOpen(false)
   }
 
@@ -56,18 +86,47 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <button
+            <motion.button
               key={item.name}
               onClick={() => scrollToSection(item.href)}
-              className="text-sm font-medium hover:text-amber-600 transition-colors"
+              className={`relative text-sm font-medium hover:text-amber-600 transition-colors ${
+                activeSection === item.href ? 'text-amber-600' : ''
+              }`}
+              animate={{
+                scale: activeSection === item.href ? 1.1 : 1,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 30
+              }}
             >
               {item.name}
-            </button>
+
+              {/* Individual Animated Underline */}
+              <AnimatePresence>
+                {activeSection === item.href && (
+                  <motion.div
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-amber-600 rounded-full"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    exit={{ scaleX: 0, opacity: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 30
+                    }}
+                    style={{ originX: 0.5 }}
+                  />
+                )}
+              </AnimatePresence>
+            </motion.button>
           ))}
         </nav>
 
-        {/* Theme Toggle */}
-        <div className="hidden md:block glass-card">
+        {/* Theme Toggle and Language Toggle */}
+        <div className="hidden md:flex items-center space-x-2">
+          <LanguageToggle />
           <ThemeToggle />
         </div>
 
@@ -87,15 +146,44 @@ const Header = () => {
         <div className="md:hidden bg-background border-t">
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             {navItems.map((item) => (
-              <button
+              <motion.button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-left text-sm font-medium hover:text-amber-600 transition-colors"
+                className={`relative text-left text-sm font-medium hover:text-amber-600 transition-colors ${
+                  activeSection === item.href ? 'text-amber-600' : ''
+                }`}
+                animate={{
+                  scale: activeSection === item.href ? 1.05 : 1,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30
+                }}
               >
                 {item.name}
-              </button>
+
+                {/* Individual Animated Underline for Mobile */}
+                <AnimatePresence>
+                  {activeSection === item.href && (
+                    <motion.div
+                      className="absolute -bottom-1 left-0 w-8 h-0.5 bg-amber-600 rounded-full"
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: 1, opacity: 1 }}
+                      exit={{ scaleX: 0, opacity: 0 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30
+                      }}
+                      style={{ originX: 0 }}
+                    />
+                  )}
+                </AnimatePresence>
+              </motion.button>
             ))}
-            <div className="self-start">
+            <div className="self-start flex items-center space-x-2">
+              <LanguageToggle />
               <ThemeToggle />
             </div>
           </nav>

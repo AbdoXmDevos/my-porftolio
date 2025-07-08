@@ -4,10 +4,14 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { Instagram, Twitter, Github, Linkedin, Mouse, Languages, Download } from "lucide-react"
+import { LanguageToggle } from "@/components/ui/language-toggle"
+import { Instagram, Twitter, Github, Linkedin, Mouse, Download } from "lucide-react"
 import Image from "next/image"
+import { useTranslation } from "@/contexts/LanguageContext"
 
 const Hero = () => {
+  const { t } = useTranslation()
+
   return (
     <TooltipProvider delayDuration={100}>
       <section className="min-h-screen relative overflow-hidden bg-background">
@@ -141,7 +145,7 @@ const Hero = () => {
                     </motion.div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Coffee Lover ☕</p>
+                    <p>{t.hero.tooltips.coffeeLover}</p>
                   </TooltipContent>
                 </Tooltip>
 
@@ -166,7 +170,7 @@ const Hero = () => {
                     </motion.div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Technology Passionate 💻</p>
+                    <p>{t.hero.tooltips.technologyPassionate}</p>
                   </TooltipContent>
                 </Tooltip>
 
@@ -191,7 +195,7 @@ const Hero = () => {
                     </motion.div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>AI Enthusiast 🤖</p>
+                    <p>{t.hero.tooltips.aiEnthusiast}</p>
                   </TooltipContent>
                 </Tooltip>
 
@@ -216,7 +220,7 @@ const Hero = () => {
                     </motion.div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Creative Thinker 💡</p>
+                    <p>{t.hero.tooltips.creativeThinker}</p>
                   </TooltipContent>
                 </Tooltip>
 
@@ -239,7 +243,7 @@ const Hero = () => {
                     </motion.div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Problem Solver ⚙️</p>
+                    <p>{t.hero.tooltips.problemSolver}</p>
                   </TooltipContent>
                 </Tooltip>
 
@@ -265,12 +269,12 @@ const Hero = () => {
                     </motion.div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Cat Person 🐱</p>
+                    <p>{t.hero.tooltips.catPerson}</p>
                   </TooltipContent>
                 </Tooltip>
 
                 {/* Background Glow Effect */}
-                <div className="absolute inset-0 orange-gradient opacity-20 blur-3xl rounded-full scale-110 -z-10"></div>
+                <div className="absolute inset-0 bg-amber-600 opacity-20 blur-3xl rounded-full scale-110 -z-10"></div>
               </div>
             </motion.div>
 
@@ -287,7 +291,7 @@ const Hero = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="mb-4"
               >
-                <span className="text-sm text-muted-foreground">— Hello</span>
+                <span className="text-sm text-muted-foreground">— {t.hero.greeting}</span>
               </motion.div>
 
               <motion.h1
@@ -296,7 +300,7 @@ const Hero = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               >
-                I&apos;m <span className="text-gradient">Abdessamad Karimi</span>
+                {t.hero.name} <span className="text-amber-600">{t.hero.nameHighlight}</span>
               </motion.h1>
 
               <motion.p
@@ -305,7 +309,7 @@ const Hero = () => {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="text-base md:text-lg text-muted-foreground mb-8"
               >
-                A freshly graduated full stack developer based in Morocco.
+                {t.hero.description}
               </motion.p>
 
               <motion.div
@@ -315,30 +319,30 @@ const Hero = () => {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Button
-                className="cursor-pointer orange-gradient hover:opacity-90 px-6 md:px-8 py-2 md:py-3 text-white font-medium"
+                className="cursor-pointer bg-amber-600 hover:opacity-90 px-6 md:px-8 py-2 md:py-3 text-white font-medium"
                 onClick={() => {
                   const aboutSection = document.querySelector('#about')
                   if (aboutSection) {
                     aboutSection.scrollIntoView({ behavior: 'smooth' })
                   }
                 }}>
-                  Who am I?
+                  {t.hero.buttons.whoAmI}
                 </Button>
 
                 <Button
                 variant="outline"
                 className="cursor-pointer bg-transparent border-2 text-white font-medium transition-all duration-300 flex items-center gap-2 px-6 md:px-8 py-2 md:py-3"
                 style={{
-                  borderColor: 'hsl(var(--orange))',
-                  color: 'hsl(var(--orange))',
+                  borderColor: 'var(--color-amber-600)',
+                  color: 'var(--color-amber-600)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#F46223'
+                  e.currentTarget.style.backgroundColor = 'var(--color-amber-600)'
                   e.currentTarget.style.color = 'white'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent'
-                  e.currentTarget.style.color = 'hsl(var(--orange))'
+                  e.currentTarget.style.color = 'var(--color-amber-600)'
                 }}
                 onClick={() => {
                   // Add your resume download logic here
@@ -346,7 +350,7 @@ const Hero = () => {
                   console.log('Download resume clicked')
                 }}>
                   <Download className="h-4 w-4" />
-                  Download Resume
+                  {t.hero.buttons.downloadResume}
                 </Button>
               </motion.div>
             </motion.div>
@@ -356,15 +360,13 @@ const Hero = () => {
 
           {/* Top Right Controls */}
           <div className="absolute top-4 right-4 md:top-6 md:right-6 lg:top-8 lg:right-8 flex items-center space-x-2">
-            {/* Language Icon */}
-            <Tooltip>
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="p-2 md:p-2.5 lg:p-3 glass-card hover:bg-primary/10 transition-colors cursor-pointer"
-                >
-                  <Languages className="h-4 w-4 md:h-4 md:w-4 lg:h-5 lg:w-5 text-muted-foreground hover:text-primary" />
-                </motion.div>
-            </Tooltip>
+            {/* Language Toggle */}
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              className="glass-card hover:bg-primary/10 transition-colors"
+            >
+              <LanguageToggle variant="hero" />
+            </motion.div>
 
             {/* Theme Toggle */}
             <motion.div

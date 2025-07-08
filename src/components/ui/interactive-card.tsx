@@ -13,30 +13,14 @@ export const InteractiveCard = ({ children, className = '' }: InteractiveCardPro
   const cardRef = useRef<HTMLDivElement>(null)
   const { mousePosition, isHovered } = useMousePosition(cardRef)
 
-  const calculateSkew = () => {
-    if (!cardRef.current || !isHovered) return { rotateX: 0, rotateY: 0 }
-    
-    const rect = cardRef.current.getBoundingClientRect()
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-    
-    const rotateX = (mousePosition.y - centerY) / centerY * -10 // Max 10 degrees
-    const rotateY = (mousePosition.x - centerX) / centerX * 10   // Max 10 degrees
-    
-    return { rotateX, rotateY }
-  }
-
-  const { rotateX, rotateY } = calculateSkew()
+  // Removed skew calculation - keeping only scale effect
 
   return (
     <div
       ref={cardRef}
       className={`relative overflow-hidden transition-all duration-300 ease-out ${className}`}
       style={{
-        transform: isHovered 
-          ? `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`
-          : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
-        transformStyle: 'preserve-3d'
+        transform: isHovered ? 'scale(1.02)' : 'scale(1)'
       }}
     >
 

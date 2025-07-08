@@ -4,70 +4,73 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { InteractiveCard } from "@/components/ui/interactive-card"
 import { GraduationCap, Briefcase, Calendar, MapPin, Building, Code, ExternalLink } from "lucide-react"
+import { useTranslation } from "@/contexts/LanguageContext"
 
 const Education = () => {
+  const { t } = useTranslation()
+
   const educationItems = [
     {
-      title: "Master's in Distributed Systems and Artificial Intelligence",
-      institution: "ENSET Mohammedia",
-      location: "Mohammedia, Morocco",
-      period: "Sep 2023 - Present",
-      description: "Advanced studies in Distributed Systems and Artificial Intelligence, focusing on machine learning, neural networks, and scalable system architecture.",
-      color: "from-blue-500 to-blue-600",
+      title: t.education.items.masters.title,
+      institution: t.education.items.masters.institution,
+      location: t.education.items.masters.location,
+      period: t.education.items.masters.period,
+      description: t.education.items.masters.description,
+      color: "from-orange-400 to-orange-500",
       link: "https://www.enset-media.ac.ma/"
     },
     {
-      title: "Bachelor's in Mathematical Sciences and Computer Science",
-      institution: "Faculty of Sciences Ain Chock",
-      location: "Casablanca, Morocco",
-      period: "Oct 2022 - Jun 2023",
-      description: "Fundamental degree in Mathematical Sciences and Computer Science, building strong foundation in mathematics, algorithms, and programming.",
-      color: "from-blue-500 to-blue-600",
+      title: t.education.items.bachelor.title,
+      institution: t.education.items.bachelor.institution,
+      location: t.education.items.bachelor.location,
+      period: t.education.items.bachelor.period,
+      description: t.education.items.bachelor.description,
+      color: "from-orange-400 to-orange-500",
       link: "https://fsac.univh2c.ma/front/index.html"
     },
     {
-      title: "Higher Technician Certificate (BTS) - Computer Systems and Networks",
-      institution: "BTS - Brevet de Technicien Supérieur",
-      location: "Casablanca, Morocco",
-      period: "Oct 2020 - Jul 2022",
-      description: "Higher Technician Certificate specializing in Computer Systems and Networks, covering network administration, system management, and IT infrastructure.",
-      color: "from-blue-500 to-blue-600",
+      title: t.education.items.bts.title,
+      institution: t.education.items.bts.institution,
+      location: t.education.items.bts.location,
+      period: t.education.items.bts.period,
+      description: t.education.items.bts.description,
+      color: "from-orange-400 to-orange-500",
       link: "https://www.linkedin.com/school/brevet-du-technicien-sup%C3%A9rieur/"
     }
   ]
 
   const experienceItems = [
     {
-      title: "Fullstack Developer Internship",
-      company: "Xelops Technology (Ex Neoxia Maroc)",
-      type: "Internship",
-      location: "Casablanca-Settat, Morocco · On-site",
-      period: "Feb 2025 - Present · 6 mos",
-      description: "Working on full-stack development projects using modern technologies including React Native and React.js for mobile and web applications.",
-      skills: ["React Native", "React.js","Spring Boot","Java","Redis", "Full-stack Development"],
-      color: "from-green-500 to-green-600",
+      title: t.education.experience.xelops1.title,
+      company: t.education.experience.xelops1.company,
+      type: t.education.experience.xelops1.type,
+      location: t.education.experience.xelops1.location,
+      period: t.education.experience.xelops1.period,
+      description: t.education.experience.xelops1.description,
+      skills: t.education.experience.xelops1.skills,
+      color: "from-orange-400 to-orange-500",
       link: "https://xelops.com"
     },
     {
-      title: "Full-stack Developer Internship",
-      company: "Xelops Technology (Ex Neoxia Maroc)",
-      type: "Internship",
-      location: "Casablanca-Settat, Morocco · Hybrid",
-      period: "Jul 2024 - Aug 2024 · 2 mos",
-      description: "Created an IntelliJ plugin that generates unit tests using AI technology, enhancing developer productivity and code quality.",
-      skills: ["Unit Testing", "Artificial Intelligence (AI)", "IntelliJ Plugin Development", "Java", "Kotlin"],
-      color: "from-green-500 to-green-600",
+      title: t.education.experience.xelops2.title,
+      company: t.education.experience.xelops2.company,
+      type: t.education.experience.xelops2.type,
+      location: t.education.experience.xelops2.location,
+      period: t.education.experience.xelops2.period,
+      description: t.education.experience.xelops2.description,
+      skills: t.education.experience.xelops2.skills,
+      color: "from-orange-400 to-orange-500",
       link: "https://xelops.com"
     },
     {
-      title: "System Administrator Internship",
-      company: "TEAMWILL",
-      type: "Internship",
-      location: "Casablanca-Settat, Morocco · On-site",
-      period: "Jun 2022 - Jul 2022 · 2 mos",
-      description: "System administration role focusing on CI/CD implementation, Jenkins configuration, and infrastructure management.",
-      skills: ["CI/CD", "Jenkins", "System Administration", "DevOps", "Linux"],
-      color: "from-green-500 to-green-600",
+      title: t.education.experience.teamwill.title,
+      company: t.education.experience.teamwill.company,
+      type: t.education.experience.teamwill.type,
+      location: t.education.experience.teamwill.location,
+      period: t.education.experience.teamwill.period,
+      description: t.education.experience.teamwill.description,
+      skills: t.education.experience.teamwill.skills,
+      color: "from-orange-400 to-orange-500",
       link: "https://www.teamwillgroup.com/fr/"
     }
   ]
@@ -83,11 +86,11 @@ const Education = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Education & <span className="text-amber-600">Experience</span>
+            {t.education.title}
           </h2>
-          <div className="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
+          <div className="w-24 h-1 bg-orange-500 mx-auto mb-8"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            My academic journey and professional experience in technology
+            {t.education.subtitle}
           </p>
         </motion.div>
 
@@ -101,7 +104,7 @@ const Education = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center space-x-3">
-              <GraduationCap className="h-8 w-8 text-blue-600" />
+              <GraduationCap className="h-8 w-8 text-amber-600" />
               <h3 className="text-2xl md:text-3xl font-bold">Education</h3>
             </div>
           </motion.div>
@@ -113,7 +116,7 @@ const Education = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center space-x-3">
-              <Briefcase className="h-8 w-8 text-green-600" />
+              <Briefcase className="h-8 w-8 text-amber-600" />
               <h3 className="text-2xl md:text-3xl font-bold">Experience</h3>
             </div>
           </motion.div>
@@ -122,7 +125,7 @@ const Education = () => {
         {/* Parallel Timeline Layout */}
         <div className="relative">
           {/* Central Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-amber-500 to-orange-500 rounded-full hidden md:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-orange-400 to-orange-500 rounded-full hidden md:block"></div>
 
           <div className="space-y-16">
             {[0, 1, 2].map((index) => (
@@ -149,7 +152,7 @@ const Education = () => {
                                 href={educationItems[index].link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-blue-600 font-semibold hover:text-blue-800 dark:hover:text-blue-400 transition-colors duration-200 cursor-pointer flex items-center gap-1 group"
+                                className="text-amber-500 font-semibold hover:text-orange-700 dark:hover:text-orange-400 transition-colors duration-200 cursor-pointer flex items-center gap-1 group"
                               >
                                 <span className="truncate">{educationItems[index].institution}</span>
                                 <ExternalLink className="h-3 w-3 flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
@@ -201,7 +204,7 @@ const Education = () => {
                                 href={experienceItems[index].link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-green-600 font-semibold hover:text-green-800 dark:hover:text-green-400 transition-colors duration-200 cursor-pointer flex items-center gap-1 group"
+                                className="text-amber-500 font-semibold hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200 cursor-pointer flex items-center gap-1 group"
                               >
                                 <span className="truncate">{experienceItems[index].company}</span>
                                 <ExternalLink className="h-3 w-3 flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
@@ -231,7 +234,7 @@ const Education = () => {
                               {experienceItems[index].skills.slice(0, 6).map((skill, skillIndex) => (
                                 <span
                                   key={skillIndex}
-                                  className="px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 text-xs rounded-full whitespace-nowrap"
+                                  className="px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-200 text-xs rounded-full whitespace-nowrap"
                                 >
                                   {skill}
                                 </span>

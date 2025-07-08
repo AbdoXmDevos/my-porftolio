@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import { useTranslation } from "@/contexts/LanguageContext"
 
 interface LoadingScreenProps {
   onComplete: () => void
@@ -9,7 +10,8 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
-  const words = ["Welcome", "Bienvenue", "مرحبا"]
+  const { t } = useTranslation()
+  const words = [t.loading.welcome, t.loading.welcomeFrench, t.loading.welcomeArabic]
 
   useEffect(() => {
     const timer = setTimeout(() => {

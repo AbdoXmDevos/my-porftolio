@@ -32,7 +32,7 @@ export function ThemeToggle({ variant = "default" }: { variant?: "default" | "ic
         {theme === "light" ? (
           <Moon className="h-4 w-4 md:h-4 md:w-4 lg:h-5 lg:w-5 text-muted-foreground hover:text-primary transition-colors" />
         ) : (
-          <Sun className="h-4 w-4 md:h-4 md:w-4 lg:h-5 lg:w-5 glass-card text-muted-foreground hover:text-primary transition-colors" />
+          <Sun className="h-4 w-4 md:h-4 md:w-4 lg:h-5 lg:w-5  text-muted-foreground hover:text-primary transition-colors" />
         )}
         <span className="sr-only">Toggle theme</span>
       </div>

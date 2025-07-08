@@ -6,10 +6,10 @@ import LoadingScreen from "@/components/LoadingScreen"
 import Header from "@/components/Header"
 import Hero from "@/components/Hero"
 import About from "@/components/About"
-import Technologies from "@/components/Technologies"
 import Education from "@/components/Education"
 import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
+import Footer from "@/components/Footer"
 
 const ClientWrapper = () => {
   const { isFirstVisit, isLoading, markAsVisited } = useFirstVisit()
@@ -29,11 +29,11 @@ const ClientWrapper = () => {
             <main>
               <Hero />
               <About />
-              <Technologies />
               <Education />
               <Projects />
               <Contact />
             </main>
+            <Footer />
           </div>
         )}
       </AnimatePresence>
