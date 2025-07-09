@@ -365,3 +365,53 @@ button, a, input, textarea, select, [role="button"], .cursor-pointer {
     @apply bg-background text-foreground;
   }
 }
+
+/* Mobile-first responsive improvements */
+@media (max-width: 475px) {
+  /* Extra small screens - improve touch targets */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Ensure minimum touch target size */
+  button, a[role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover effects on touch devices */
+  .hover\:scale-110:hover {
+    transform: none;
+  }
+
+  .hover\:shadow-xl:hover {
+    box-shadow: none;
+  }
+
+  /* Better touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .floating-element {
+    animation: none !important;
+  }
+
+  .star {
+    animation: none !important;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

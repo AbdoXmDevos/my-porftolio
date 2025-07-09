@@ -54,7 +54,7 @@ export function LanguageToggle({ variant = "default" }: LanguageToggleProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute right-0 top-12 z-50 min-w-[120px] rounded-md border bg-background dark:bg-background p-1 text-foreground shadow-lg backdrop-blur-sm"
+              className="absolute right-0 top-12 z-50 min-w-[120px] rounded-md border bg-background p-1 text-foreground shadow-lg"
             >
               {languages.map((lang) => (
                 <motion.button
