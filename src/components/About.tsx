@@ -37,11 +37,11 @@ const About = () => {
   const skillCategories = [
     {
       title: t.about.skillCategories.frontend,
-      skills: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Angular"]
+      skills: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Angular", "Shadcn UI"]
     },
     {
       title: t.about.skillCategories.backend,
-      skills: ["Java", "Spring Boot", "Python", "Node.js", "Express"]
+      skills: ["Java", "Spring Boot", "Python", "Node.js"]
     },
     {
       title: t.about.skillCategories.mobile,
@@ -49,11 +49,11 @@ const About = () => {
     },
     {
       title: t.about.skillCategories.database,
-      skills: ["MongoDB", "PostgreSQL", "MySQL", "Redis"]
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Supabase","Firebase"]
     },
     {
       title: t.about.skillCategories.aiMl,
-      skills: ["TensorFlow", "PyTorch", "Pandas", "NumPy", "Jupyter"]
+      skills: ["TensorFlow", "PyTorch", "Pandas", "NumPy", "Jupyter","Huggingface","Kaggle"]
     },
     {
       title: t.about.skillCategories.devops,

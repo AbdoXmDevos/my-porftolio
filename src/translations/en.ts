@@ -188,6 +188,13 @@ const en = {
     welcomeArabic: "مرحبا"
   },
 
+  // Resume Download Modal
+  resumeModal: {
+    title: "Download Resume",
+    description: "Choose your preferred language to download my resume.",
+    downloadIn: "Download in"
+  },
+
   // Common
   common: {
     loading: "Loading...",

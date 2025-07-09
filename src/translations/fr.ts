@@ -190,6 +190,13 @@ export const fr: TranslationKeys = {
     welcomeArabic: "مرحبا"
   },
 
+  // Resume Download Modal
+  resumeModal: {
+    title: "Télécharger CV",
+    description: "Choisissez votre langue préférée pour télécharger mon CV.",
+    downloadIn: "Télécharger en"
+  },
+
   // Common
   common: {
     loading: "Chargement...",

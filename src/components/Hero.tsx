@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { LanguageToggle } from "@/components/ui/language-toggle"
+import { ResumeDownloadModal } from "@/components/ui/resume-download-modal"
 import { Instagram, Twitter, Github, Linkedin, Mouse, Download } from "lucide-react"
 import Image from "next/image"
 import { useTranslation } from "@/contexts/LanguageContext"
@@ -329,29 +330,27 @@ const Hero = () => {
                   {t.hero.buttons.whoAmI}
                 </Button>
 
-                <Button
-                variant="outline"
-                className="cursor-pointer bg-transparent border-2 text-white font-medium transition-all duration-300 flex items-center gap-2 px-6 md:px-8 py-2 md:py-3"
-                style={{
-                  borderColor: 'var(--color-amber-600)',
-                  color: 'var(--color-amber-600)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-amber-600)'
-                  e.currentTarget.style.color = 'white'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent'
-                  e.currentTarget.style.color = 'var(--color-amber-600)'
-                }}
-                onClick={() => {
-                  // Add your resume download logic here
-                  // For example: window.open('/resume.pdf', '_blank')
-                  console.log('Download resume clicked')
-                }}>
-                  <Download className="h-4 w-4" />
-                  {t.hero.buttons.downloadResume}
-                </Button>
+                <ResumeDownloadModal>
+                  <Button
+                    variant="outline"
+                    className="cursor-pointer bg-transparent border-2 text-white font-medium transition-all duration-300 flex items-center gap-2 px-6 md:px-8 py-2 md:py-3"
+                    style={{
+                      borderColor: 'var(--color-amber-600)',
+                      color: 'var(--color-amber-600)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'var(--color-amber-600)'
+                      e.currentTarget.style.color = 'white'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent'
+                      e.currentTarget.style.color = 'var(--color-amber-600)'
+                    }}
+                  >
+                    <Download className="h-4 w-4" />
+                    {t.hero.buttons.downloadResume}
+                  </Button>
+                </ResumeDownloadModal>
               </motion.div>
             </motion.div>
 
