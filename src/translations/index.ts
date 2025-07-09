@@ -13,4 +13,4 @@ export const languages = [
   { code: 'fr' as Language, name: 'Français', flag: '🇫🇷' }
 ];
 
-export { TranslationKeys } from './en';
+export type { TranslationKeys } from './en';

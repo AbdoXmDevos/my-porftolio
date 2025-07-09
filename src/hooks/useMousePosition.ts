@@ -5,7 +5,7 @@ interface MousePosition {
   y: number
 }
 
-export const useMousePosition = (ref: RefObject<HTMLElement>) => {
+export const useMousePosition = (ref: RefObject<HTMLElement | null>) => {
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
